@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { CalendarDays, Home, User } from "lucide-react";
+import { CalendarDays, Home, User, Building } from "lucide-react";
 
 const Navbar = () => {
   return (
@@ -30,6 +30,12 @@ const Navbar = () => {
             <Button variant="ghost" className="flex items-center gap-1">
               <User className="h-4 w-4" />
               <span>Dashboard</span>
+            </Button>
+          </Link>
+          <Link to="/register-your-gym">
+            <Button variant="ghost" className="flex items-center gap-1">
+              <Building className="h-4 w-4" />
+              <span>Register Gym</span>
             </Button>
           </Link>
         </div>
