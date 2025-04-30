@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -38,8 +37,8 @@ const formSchema = z.object({
   pricePerSlot: z.number().min(1, "Price must be at least 1"),
   contactEmail: z.string().email("Invalid email address"),
   contactPhone: z.string().min(10, "Phone number must be at least 10 digits"),
-  acceptTerms: z.literal(true, {
-    errorMap: () => ({ message: "You must accept the terms and conditions" }),
+  acceptTerms: z.boolean().refine(val => val === true, {
+    message: "You must accept the terms and conditions",
   }),
 });
 
