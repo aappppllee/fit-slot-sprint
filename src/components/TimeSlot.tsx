@@ -11,9 +11,10 @@ export interface TimeSlotProps {
   availableSpots: number;
   price: number;
   featured?: boolean;
+  gymId?: string;
 }
 
-const TimeSlot = ({ id, time, date, duration, availableSpots, price, featured = false }: TimeSlotProps) => {
+const TimeSlot = ({ id, time, date, duration, availableSpots, price, featured = false, gymId }: TimeSlotProps) => {
   return (
     <div 
       className={`rounded-lg bg-white p-5 card-shadow ${

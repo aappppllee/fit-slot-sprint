@@ -21,12 +21,21 @@ import {
 import { CalendarIcon } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
+import { mockGyms } from "@/data/mockGyms";
+
+interface BookingCalendarProps {
+  gymId?: string;
+}
 
 // Generate time slots from 5am to 9pm with 2-hour intervals
-const generateTimeSlots = (selectedDate: Date): TimeSlotProps[] => {
+const generateTimeSlots = (selectedDate: Date, gymId?: string): TimeSlotProps[] => {
   const formattedDate = format(selectedDate, 'MMM dd, yyyy');
   const isToday = new Date().toDateString() === selectedDate.toDateString();
   const dateLabel = isToday ? "Today" : formattedDate;
+  
+  // If gymId is provided, use that specific gym's price
+  const selectedGym = gymId ? mockGyms.find(gym => gym.id === gymId) : null;
+  const basePrice = selectedGym ? selectedGym.pricePerSlot : 12.99;
   
   const slots = [];
   for (let hour = 5; hour <= 21; hour += 2) {
@@ -37,32 +46,39 @@ const generateTimeSlots = (selectedDate: Date): TimeSlotProps[] => {
     // Randomly assign featured status to a couple of slots
     const featured = Math.random() < 0.2;
     
-    // Randomly assign different prices based on time of day
-    let price = 12.99;
+    // Adjust prices based on time of day
+    let price = basePrice;
     if (hour >= 17) { // Evening slots more expensive
-      price = 16.99;
+      price = basePrice * 1.3;
     } else if (hour >= 12) { // Afternoon slots medium price
-      price = 14.99;
+      price = basePrice * 1.15;
     }
     
-    // Random available spots between 1-15
-    const availableSpots = Math.floor(Math.random() * 15) + 1;
+    // Random available spots between 1-15, or fewer for busy gyms
+    const maxSpots = selectedGym && selectedGym.availableSlots < 15 ? selectedGym.availableSlots : 15;
+    const availableSpots = Math.floor(Math.random() * maxSpots) + 1;
+    
+    // Create a unique ID that includes the gym if available
+    const slotId = gymId 
+      ? `${gymId}-${selectedDate.getTime()}-${hour}`
+      : `${selectedDate.getTime()}-${hour}`;
     
     slots.push({
-      id: `${selectedDate.getTime()}-${hour}`,
+      id: slotId,
       time: timeString,
       date: dateLabel,
       duration: "120 min",
       availableSpots,
       price,
-      featured
+      featured,
+      gymId
     });
   }
   
   return slots;
 };
 
-const BookingCalendar = () => {
+const BookingCalendar = ({ gymId }: BookingCalendarProps) => {
   const isMobile = useIsMobile();
   const [date, setDate] = React.useState<Date>(new Date());
   const [sessionType, setSessionType] = React.useState("all");
@@ -87,7 +103,7 @@ const BookingCalendar = () => {
     setShowCalendar(false);
   };
 
-  const timeSlots = generateTimeSlots(date);
+  const timeSlots = generateTimeSlots(date, gymId);
   const formattedDate = format(date, 'EEEE, MMMM do, yyyy');
   
   return (
