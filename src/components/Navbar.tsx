@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { CalendarDays, Home, User, Building } from "lucide-react";
+import { Home, User, Building, Search } from "lucide-react";
 
 const Navbar = () => {
   return (
@@ -20,10 +20,10 @@ const Navbar = () => {
               <span>Home</span>
             </Button>
           </Link>
-          <Link to="/book">
+          <Link to="/find-gym">
             <Button variant="ghost" className="flex items-center gap-1">
-              <CalendarDays className="h-4 w-4" />
-              <span>Book Slot</span>
+              <Search className="h-4 w-4" />
+              <span>Find Gyms</span>
             </Button>
           </Link>
           <Link to="/dashboard">
