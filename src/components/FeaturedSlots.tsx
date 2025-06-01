@@ -11,7 +11,7 @@ const featuredTimeSlots: TimeSlotProps[] = [
     date: "Today",
     duration: "60 min",
     availableSpots: 8,
-    price: 12.99
+    price: 149
   },
   {
     id: "2",
@@ -19,7 +19,7 @@ const featuredTimeSlots: TimeSlotProps[] = [
     date: "Today",
     duration: "60 min",
     availableSpots: 5,
-    price: 12.99,
+    price: 149,
     featured: true
   },
   {
@@ -28,7 +28,7 @@ const featuredTimeSlots: TimeSlotProps[] = [
     date: "Today",
     duration: "60 min",
     availableSpots: 2,
-    price: 16.99,
+    price: 199,
     featured: true
   },
   {
@@ -37,7 +37,7 @@ const featuredTimeSlots: TimeSlotProps[] = [
     date: "Today",
     duration: "60 min",
     availableSpots: 6,
-    price: 16.99
+    price: 199
   }
 ];
 

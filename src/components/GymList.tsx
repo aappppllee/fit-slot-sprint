@@ -77,7 +77,7 @@ const GymList = ({ gyms }: GymListProps) => {
               
               <CardFooter className="flex justify-between items-center pt-0">
                 <div>
-                  <span className="font-bold">From ${gym.pricePerSlot.toFixed(2)}</span>
+                  <span className="font-bold">From ₹{gym.pricePerSlot}</span>
                   <span className="text-sm text-gray-500"> / slot</span>
                 </div>
                 <Link to={`/book?gymId=${gym.id}`}>

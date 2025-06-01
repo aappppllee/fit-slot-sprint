@@ -8,12 +8,12 @@ export const mockGyms: Gym[] = [
     description: "Premium fitness center with state-of-the-art equipment and personal training services.",
     imageUrl: "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1075&q=80",
     location: {
-      address: "123 Fitness Ave",
-      city: "New York",
-      zipCode: "10001",
+      address: "123 MG Road",
+      city: "Mumbai",
+      zipCode: "400001",
       coordinates: {
-        latitude: 40.7128,
-        longitude: -74.0060
+        latitude: 19.0760,
+        longitude: 72.8777
       }
     },
     openingHours: {
@@ -21,7 +21,7 @@ export const mockGyms: Gym[] = [
       to: "11:00 PM"
     },
     availableSlots: 24,
-    pricePerSlot: 15.99,
+    pricePerSlot: 199,
     rating: 4.7,
     amenities: ["Personal Training", "Sauna", "Pool", "Locker Rooms", "Towel Service", "Cardio Machines"],
     featured: true
@@ -32,12 +32,12 @@ export const mockGyms: Gym[] = [
     description: "Specialized strength training facility with premium free weights and powerlifting equipment.",
     imageUrl: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     location: {
-      address: "456 Strong St",
-      city: "Chicago",
-      zipCode: "60601",
+      address: "456 Connaught Place",
+      city: "Delhi",
+      zipCode: "110001",
       coordinates: {
-        latitude: 41.8781,
-        longitude: -87.6298
+        latitude: 28.7041,
+        longitude: 77.1025
       }
     },
     openingHours: {
@@ -45,7 +45,7 @@ export const mockGyms: Gym[] = [
       to: "10:00 PM"
     },
     availableSlots: 18,
-    pricePerSlot: 12.99,
+    pricePerSlot: 149,
     rating: 4.5,
     amenities: ["Free Weights", "Power Racks", "Deadlift Platforms", "Chalk Allowed"]
   },
@@ -55,12 +55,12 @@ export const mockGyms: Gym[] = [
     description: "Boutique fitness studio offering personalized training plans and small group classes.",
     imageUrl: "https://images.unsplash.com/photo-1558611848-73f7eb4001a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80",
     location: {
-      address: "789 Flex Blvd",
-      city: "Los Angeles",
-      zipCode: "90001",
+      address: "789 Brigade Road",
+      city: "Bangalore",
+      zipCode: "560001",
       coordinates: {
-        latitude: 34.0522,
-        longitude: -118.2437
+        latitude: 12.9716,
+        longitude: 77.5946
       }
     },
     openingHours: {
@@ -68,7 +68,7 @@ export const mockGyms: Gym[] = [
       to: "9:00 PM"
     },
     availableSlots: 12,
-    pricePerSlot: 18.99,
+    pricePerSlot: 249,
     rating: 4.8,
     amenities: ["Group Classes", "Yoga Studio", "Nutritionist", "Massage Therapy"],
     featured: true
@@ -79,12 +79,12 @@ export const mockGyms: Gym[] = [
     description: "Modern, inclusive gym for all fitness levels with 24/7 access.",
     imageUrl: "https://images.unsplash.com/photo-1540497077202-7c8a3999166f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     location: {
-      address: "101 Downtown Ave",
-      city: "Seattle",
-      zipCode: "98101",
+      address: "101 Park Street",
+      city: "Kolkata",
+      zipCode: "700016",
       coordinates: {
-        latitude: 47.6062,
-        longitude: -122.3321
+        latitude: 22.5726,
+        longitude: 88.3639
       }
     },
     openingHours: {
@@ -92,7 +92,7 @@ export const mockGyms: Gym[] = [
       to: "24/7"
     },
     availableSlots: 30,
-    pricePerSlot: 9.99,
+    pricePerSlot: 99,
     rating: 4.2,
     amenities: ["24/7 Access", "Cardio Theater", "Free Wi-Fi", "Mobile App Access"]
   },
@@ -102,12 +102,12 @@ export const mockGyms: Gym[] = [
     description: "High-intensity functional training facility with coach-led classes and open gym time.",
     imageUrl: "https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1169&q=80",
     location: {
-      address: "222 Functional St",
-      city: "Miami",
-      zipCode: "33101",
+      address: "222 Banjara Hills",
+      city: "Hyderabad",
+      zipCode: "500034",
       coordinates: {
-        latitude: 25.7617,
-        longitude: -80.1918
+        latitude: 17.3850,
+        longitude: 78.4867
       }
     },
     openingHours: {
@@ -115,7 +115,7 @@ export const mockGyms: Gym[] = [
       to: "8:30 PM"
     },
     availableSlots: 15,
-    pricePerSlot: 16.99,
+    pricePerSlot: 179,
     rating: 4.9,
     amenities: ["Group Training", "Olympic Weightlifting", "Gymnastics Area", "Recovery Zone"]
   },
@@ -125,12 +125,12 @@ export const mockGyms: Gym[] = [
     description: "Holistic fitness center focusing on mind-body connection with diverse class offerings.",
     imageUrl: "https://images.unsplash.com/photo-1607962837359-5e7e89f86776?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
     location: {
-      address: "333 Calm Way",
-      city: "San Francisco",
-      zipCode: "94101",
+      address: "333 Koregaon Park",
+      city: "Pune",
+      zipCode: "411001",
       coordinates: {
-        latitude: 37.7749,
-        longitude: -122.4194
+        latitude: 18.5204,
+        longitude: 73.8567
       }
     },
     openingHours: {
@@ -138,7 +138,7 @@ export const mockGyms: Gym[] = [
       to: "9:00 PM"
     },
     availableSlots: 20,
-    pricePerSlot: 14.99,
+    pricePerSlot: 169,
     rating: 4.6,
     amenities: ["Yoga", "Pilates", "Meditation Studio", "Spa Services", "Smoothie Bar"]
   }

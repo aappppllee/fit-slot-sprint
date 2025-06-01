@@ -4,26 +4,26 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 const testimonials = [
   {
     id: 1,
-    name: "Sarah Johnson",
+    name: "Priya Sharma",
     role: "Regular Gym-goer",
     image: null,
-    initials: "SJ",
+    initials: "PS",
     testimonial: "FitSlot has completely transformed my workout routine. I love being able to book slots when it's convenient for me without being tied to a membership."
   },
   {
     id: 2,
-    name: "Michael Chen",
+    name: "Arjun Patel",
     role: "Business Traveler",
     image: null,
-    initials: "MC",
+    initials: "AP",
     testimonial: "As someone who travels frequently, traditional gym memberships never worked for me. The pay-as-you-go model is perfect for my unpredictable schedule."
   },
   {
     id: 3,
-    name: "Emily Rodriguez",
+    name: "Kavya Reddy",
     role: "Fitness Enthusiast",
     image: null,
-    initials: "ER",
+    initials: "KR",
     testimonial: "The booking process is so smooth, and I love that I can see exactly how many people will be in the gym during my slot. It makes planning my workouts so much easier."
   }
 ];
