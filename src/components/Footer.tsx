@@ -50,10 +50,10 @@ const Footer = () => {
           
           <div>
             <h3 className="font-bold text-lg mb-4">Contact</h3>
-            <p className="text-gray-600 mb-2">123 Fitness Street</p>
-            <p className="text-gray-600 mb-2">Gym City, GC 12345</p>
+            <p className="text-gray-600 mb-2">SCO 123, Sector 17</p>
+            <p className="text-gray-600 mb-2">Chandigarh, 160017</p>
             <p className="text-gray-600 mb-2">Email: info@fitslot.com</p>
-            <p className="text-gray-600">Phone: +1 (555) 123-4567</p>
+            <p className="text-gray-600">Phone: +91 98765 43210</p>
           </div>
         </div>
         
