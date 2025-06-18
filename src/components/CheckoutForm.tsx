@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -18,7 +17,7 @@ const mockTimeSlots: Record<string, TimeSlotProps> = {
     date: "Today",
     duration: "60 min",
     availableSpots: 8,
-    price: 12.99
+    price: 149
   },
   "2": {
     id: "2",
@@ -26,7 +25,7 @@ const mockTimeSlots: Record<string, TimeSlotProps> = {
     date: "Today",
     duration: "60 min",
     availableSpots: 5,
-    price: 12.99,
+    price: 149,
     featured: true
   },
   "3": {
@@ -35,7 +34,7 @@ const mockTimeSlots: Record<string, TimeSlotProps> = {
     date: "Today",
     duration: "60 min",
     availableSpots: 10,
-    price: 12.99
+    price: 149
   },
   "4": {
     id: "4",
@@ -43,7 +42,7 @@ const mockTimeSlots: Record<string, TimeSlotProps> = {
     date: "Today",
     duration: "60 min",
     availableSpots: 7,
-    price: 14.99
+    price: 199
   },
   "5": {
     id: "5",
@@ -51,7 +50,7 @@ const mockTimeSlots: Record<string, TimeSlotProps> = {
     date: "Today",
     duration: "60 min",
     availableSpots: 3,
-    price: 14.99
+    price: 199
   },
   "6": {
     id: "6",
@@ -59,7 +58,7 @@ const mockTimeSlots: Record<string, TimeSlotProps> = {
     date: "Today",
     duration: "60 min",
     availableSpots: 2,
-    price: 16.99,
+    price: 249,
     featured: true
   }
 };
@@ -224,16 +223,16 @@ const CheckoutForm = () => {
                 <div className="space-y-2">
                   <div className="flex justify-between">
                     <span className="text-gray-600">Slot Price</span>
-                    <span>${timeSlot.price.toFixed(2)}</span>
+                    <span>₹{timeSlot.price.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-gray-600">Tax</span>
-                    <span>${taxAmount.toFixed(2)}</span>
+                    <span>₹{taxAmount.toFixed(2)}</span>
                   </div>
                   <Separator className="my-2" />
                   <div className="flex justify-between font-bold">
                     <span>Total</span>
-                    <span>${totalAmount.toFixed(2)}</span>
+                    <span>₹{totalAmount.toFixed(2)}</span>
                   </div>
                 </div>
               </CardContent>

@@ -36,7 +36,7 @@ const DashboardStats = () => {
         <CardContent>
           <div className="flex items-center">
             <CreditCard className="h-6 w-6 text-gym-purple mr-2" />
-            <span className="text-2xl font-bold">$55.96</span>
+            <span className="text-2xl font-bold">₹895.20</span>
           </div>
         </CardContent>
       </Card>

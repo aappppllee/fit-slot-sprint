@@ -46,7 +46,7 @@ const TimeSlot = ({ id, time, date, duration, availableSpots, price, featured = 
       </div>
       
       <div className="flex items-center justify-between mt-4">
-        <span className="font-bold text-lg">${price.toFixed(2)}</span>
+        <span className="font-bold text-lg">₹{price.toFixed(2)}</span>
         <Link to={`/checkout/${id}`}>
           <Button>Book Now</Button>
         </Link>
