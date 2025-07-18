@@ -9,7 +9,8 @@ import BookPage from "./pages/BookPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import DashboardPage from "./pages/DashboardPage";
 import GymFinderPage from "./pages/GymFinderPage";
-
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
 import NotFound from "./pages/NotFound";
 
 // Create a client
@@ -28,6 +29,8 @@ const App = () => {
             <Route path="/checkout/:id" element={<CheckoutPage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/find-gym" element={<GymFinderPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

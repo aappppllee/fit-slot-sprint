@@ -34,6 +34,9 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="flex items-center space-x-3">
+          <Link to="/login">
+            <Button variant="outline">Login</Button>
+          </Link>
           <Link to="/book">
             <Button className="gradient-button">Book Now</Button>
           </Link>
