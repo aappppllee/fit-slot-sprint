@@ -26,6 +26,12 @@ const Navbar = () => {
               <span>Find Gyms</span>
             </Button>
           </Link>
+          <Link to="/register-gym">
+            <Button variant="ghost" className="flex items-center gap-1">
+              <Building className="h-4 w-4" />
+              <span>Register Gym</span>
+            </Button>
+          </Link>
           <Link to="/dashboard">
             <Button variant="ghost" className="flex items-center gap-1">
               <User className="h-4 w-4" />
