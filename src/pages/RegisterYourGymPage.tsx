@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Button } from "@/components/ui/button";
@@ -8,8 +8,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { useToast } from "@/hooks/use-toast";
+import { Plus, Trash2 } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+const timeSegmentSchema = z.object({
+  openingTime: z.string().min(1, "Opening time is required"),
+  closingTime: z.string().min(1, "Closing time is required"),
+  pricePerSlot: z.string().min(1, "Price per slot is required"),
+});
 
 const gymRegistrationSchema = z.object({
   gymName: z.string().min(2, "Gym name must be at least 2 characters"),
@@ -20,9 +27,7 @@ const gymRegistrationSchema = z.object({
   city: z.string().min(2, "City is required"),
   zipCode: z.string().min(5, "ZIP code must be at least 5 characters"),
   description: z.string().min(50, "Description must be at least 50 characters"),
-  openingTime: z.string().min(1, "Opening time is required"),
-  closingTime: z.string().min(1, "Closing time is required"),
-  pricePerSlot: z.string().min(1, "Price per slot is required"),
+  timeSegments: z.array(timeSegmentSchema).min(1, "At least one time segment is required"),
   amenities: z.string().min(10, "Please list at least some amenities"),
 });
 
@@ -43,11 +48,14 @@ const RegisterYourGymPage = () => {
       city: "",
       zipCode: "",
       description: "",
-      openingTime: "",
-      closingTime: "",
-      pricePerSlot: "",
+      timeSegments: [{ openingTime: "", closingTime: "", pricePerSlot: "" }],
       amenities: "",
     },
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    control: form.control,
+    name: "timeSegments",
   });
 
   const onSubmit = async (data: GymRegistrationFormData) => {
@@ -225,48 +233,84 @@ const RegisterYourGymPage = () => {
                     )}
                   />
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <FormField
-                      control={form.control}
-                      name="openingTime"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Opening Time</FormLabel>
-                          <FormControl>
-                            <Input type="time" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <h3 className="text-lg font-semibold">Operating Hours & Pricing</h3>
+                      <Button
+                        type="button"
+                        variant="outline"
+                        size="sm"
+                        onClick={() => append({ openingTime: "", closingTime: "", pricePerSlot: "" })}
+                        className="gap-2"
+                      >
+                        <Plus className="h-4 w-4" />
+                        Add Time Segment
+                      </Button>
+                    </div>
 
-                    <FormField
-                      control={form.control}
-                      name="closingTime"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Closing Time</FormLabel>
-                          <FormControl>
-                            <Input type="time" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                    {fields.map((field, index) => (
+                      <div key={field.id} className="p-4 border rounded-lg space-y-4">
+                        <div className="flex items-center justify-between">
+                          <h4 className="font-medium">Time Segment {index + 1}</h4>
+                          {fields.length > 1 && (
+                            <Button
+                              type="button"
+                              variant="outline"
+                              size="sm"
+                              onClick={() => remove(index)}
+                              className="gap-2 text-destructive hover:text-destructive"
+                            >
+                              <Trash2 className="h-4 w-4" />
+                              Remove
+                            </Button>
+                          )}
+                        </div>
 
-                    <FormField
-                      control={form.control}
-                      name="pricePerSlot"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Price per Slot (₹)</FormLabel>
-                          <FormControl>
-                            <Input type="number" placeholder="199" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                          <FormField
+                            control={form.control}
+                            name={`timeSegments.${index}.openingTime`}
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Opening Time</FormLabel>
+                                <FormControl>
+                                  <Input type="time" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+
+                          <FormField
+                            control={form.control}
+                            name={`timeSegments.${index}.closingTime`}
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Closing Time</FormLabel>
+                                <FormControl>
+                                  <Input type="time" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+
+                          <FormField
+                            control={form.control}
+                            name={`timeSegments.${index}.pricePerSlot`}
+                            render={({ field }) => (
+                              <FormItem>
+                                <FormLabel>Price per Slot (₹)</FormLabel>
+                                <FormControl>
+                                  <Input type="number" placeholder="199" {...field} />
+                                </FormControl>
+                                <FormMessage />
+                              </FormItem>
+                            )}
+                          />
+                        </div>
+                      </div>
+                    ))}
                   </div>
 
                   <FormField
