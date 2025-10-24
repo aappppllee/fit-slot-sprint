@@ -38,22 +38,8 @@ type GymRegistrationFormData = z.infer<typeof gymRegistrationSchema>;
 const RegisterYourGymPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
-  const { user, loading } = useAuth('gym_owner');
+  const { user } = useAuth('gym_owner');
   const navigate = useNavigate();
-  
-  useEffect(() => {
-    if (!loading && !user) {
-      navigate("/gym-owner-auth");
-    }
-  }, [user, loading, navigate]);
-  
-  if (loading) {
-    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
-  }
-  
-  if (!user) {
-    return null;
-  }
 
   const form = useForm<GymRegistrationFormData>({
     resolver: zodResolver(gymRegistrationSchema),
@@ -77,6 +63,16 @@ const RegisterYourGymPage = () => {
   });
 
   const onSubmit = async (data: GymRegistrationFormData) => {
+    if (!user) {
+      toast({
+        title: "Authentication Required",
+        description: "Please login to register your gym",
+        variant: "destructive",
+      });
+      navigate("/gym-owner-auth");
+      return;
+    }
+    
     setIsLoading(true);
     try {
       // TODO: Replace with your FastAPI endpoint
