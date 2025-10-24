@@ -9,8 +9,8 @@ import BookPage from "./pages/BookPage";
 import CheckoutPage from "./pages/CheckoutPage";
 import DashboardPage from "./pages/DashboardPage";
 import GymFinderPage from "./pages/GymFinderPage";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
+import GymUserAuthPage from "./pages/GymUserAuthPage";
+import GymOwnerAuthPage from "./pages/GymOwnerAuthPage";
 import RegisterYourGymPage from "./pages/RegisterYourGymPage";
 import NotFound from "./pages/NotFound";
 
@@ -30,8 +30,8 @@ const App = () => {
             <Route path="/checkout/:id" element={<CheckoutPage />} />
             <Route path="/dashboard" element={<DashboardPage />} />
             <Route path="/find-gym" element={<GymFinderPage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/gym-user-auth" element={<GymUserAuthPage />} />
+            <Route path="/gym-owner-auth" element={<GymOwnerAuthPage />} />
             <Route path="/register-gym" element={<RegisterYourGymPage />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

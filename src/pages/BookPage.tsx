@@ -1,18 +1,27 @@
 
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BookingCalendar from "@/components/BookingCalendar";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { mockGyms } from "@/data/mockGyms";
 import { Gym } from "@/types/gym";
+import { useAuth } from "@/hooks/useAuth";
 
 const BookPage = () => {
   const [searchParams] = useSearchParams();
   const gymId = searchParams.get("gymId");
   const [selectedGym, setSelectedGym] = useState<Gym | null>(null);
   const isMobile = useIsMobile();
+  const { user, loading } = useAuth();
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    if (!loading && !user) {
+      navigate("/gym-user-auth");
+    }
+  }, [user, loading, navigate]);
   
   useEffect(() => {
     if (gymId) {
@@ -20,6 +29,14 @@ const BookPage = () => {
       setSelectedGym(gym);
     }
   }, [gymId]);
+  
+  if (loading) {
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+  }
+  
+  if (!user) {
+    return null;
+  }
   
   return (
     <div className="min-h-screen flex flex-col">
