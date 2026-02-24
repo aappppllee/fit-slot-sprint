@@ -13,9 +13,9 @@ import GymFinderPage from "./pages/GymFinderPage";
 import GymUserAuthPage from "./pages/GymUserAuthPage";
 import GymOwnerAuthPage from "./pages/GymOwnerAuthPage";
 import RegisterYourGymPage from "./pages/RegisterYourGymPage";
+import ProfilePage from "./pages/ProfilePage";
 import NotFound from "./pages/NotFound";
 
-// Create a client
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -34,7 +34,7 @@ const App = () => {
             <Route path="/gym-user-auth" element={<GymUserAuthPage />} />
             <Route path="/gym-owner-auth" element={<GymOwnerAuthPage />} />
             <Route path="/register-gym" element={<RegisterYourGymPage />} />
-            
+            <Route path="/profile" element={<ProfilePage />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
