@@ -1,61 +1,59 @@
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import GymSearch from "@/components/GymSearch";
 import GymList from "@/components/GymList";
 import { Gym } from "@/types/gym";
-import { mockGyms } from "@/data/mockGyms";
+import { supabase } from "@/integrations/supabase/client";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { Dumbbell, MapPin, Star } from "lucide-react";
 
 const GymFinderPage = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [gyms, setGyms] = useState<Gym[]>(mockGyms);
+  const [gyms, setGyms] = useState<Gym[]>([]);
+  const [loading, setLoading] = useState(true);
   const [filterType, setFilterType] = useState<string | null>(null);
+
+  const fetchGyms = async (query?: string) => {
+    setLoading(true);
+    let q = supabase
+      .from("gyms")
+      .select("*")
+      .eq("status", "approved");
+
+    if (query && query !== "Current Location") {
+      q = q.or(`name.ilike.%${query}%,city.ilike.%${query}%,zip_code.ilike.%${query}%,address.ilike.%${query}%`);
+    }
+
+    const { data, error } = await q;
+    if (!error && data) {
+      let results = data as unknown as Gym[];
+      if (filterType === "popular") {
+        results = results.sort((a, b) => (b.rating || 0) - (a.rating || 0));
+      }
+      setGyms(results);
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    fetchGyms();
+  }, []);
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
-    // Filter gyms based on search query
-    filterGyms(query, filterType);
+    fetchGyms(query);
   };
 
   const handleFilterChange = (value: string) => {
     setFilterType(value);
-    filterGyms(searchQuery, value);
-  };
-
-  const filterGyms = (query: string, filter: string | null) => {
-    let filteredGyms = mockGyms;
-    
-    // Apply search query filter
-    if (query) {
-      filteredGyms = filteredGyms.filter(
-        (gym) =>
-          gym.name.toLowerCase().includes(query.toLowerCase()) ||
-          gym.location.address.toLowerCase().includes(query.toLowerCase()) ||
-          gym.location.city.toLowerCase().includes(query.toLowerCase())
-      );
+    // Re-sort existing results
+    if (value === "popular") {
+      setGyms(prev => [...prev].sort((a, b) => (b.rating || 0) - (a.rating || 0)));
+    } else {
+      fetchGyms(searchQuery);
     }
-    
-    // Apply additional filters
-    if (filter) {
-      switch (filter) {
-        case "popular":
-          filteredGyms = filteredGyms.sort((a, b) => b.rating - a.rating);
-          break;
-        case "nearest":
-          // In a real app, this would use geolocation to sort by distance
-          filteredGyms = filteredGyms.sort((a, b) => 
-            a.location.city.localeCompare(b.location.city)
-          );
-          break;
-        default:
-          break;
-      }
-    }
-    
-    setGyms(filteredGyms);
   };
 
   return (
@@ -65,7 +63,7 @@ const GymFinderPage = () => {
       <main className="flex-grow py-6 md:py-10">
         <div className="container mx-auto px-4 mb-6 md:mb-8">
           <h1 className="text-2xl md:text-3xl font-bold">Find a Gym Near You</h1>
-          <p className="text-gray-600 text-sm md:text-base mb-4">
+          <p className="text-muted-foreground text-sm md:text-base mb-4">
             Search for partner gyms in your area and book your workout slots.
           </p>
           
@@ -87,7 +85,11 @@ const GymFinderPage = () => {
           </div>
         </div>
         
-        <GymList gyms={gyms} />
+        {loading ? (
+          <div className="text-center py-10 text-muted-foreground">Loading gyms...</div>
+        ) : (
+          <GymList gyms={gyms} />
+        )}
       </main>
       
       <Footer />
