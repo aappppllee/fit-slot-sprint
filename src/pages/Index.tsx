@@ -25,7 +25,7 @@ const Index = () => {
             <p className="text-lg mb-8 max-w-2xl mx-auto">
               Book your first gym session today and experience the flexibility of pay-as-you-go workouts.
             </p>
-            <Link to="/book">
+            <Link to="/find-gym">
               <Button size="lg" variant="secondary" className="flex items-center gap-1">
                 Book a Slot <ArrowRight className="h-4 w-4" />
               </Button>

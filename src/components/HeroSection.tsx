@@ -15,7 +15,7 @@ const HeroSection = () => {
             Just book, pay, and workout when it suits you.
           </p>
           <div className="flex space-x-4">
-            <Link to="/book">
+            <Link to="/find-gym">
               <Button size="lg" className="gradient-button">Book Now</Button>
             </Link>
             <Link to="/dashboard">
