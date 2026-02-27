@@ -35,7 +35,7 @@ const generateTimeSlots = (selectedDate: Date, gymId?: string): TimeSlotProps[] 
   
   // If gymId is provided, use that specific gym's price
   const selectedGym = gymId ? mockGyms.find(gym => gym.id === gymId) : null;
-  const basePrice = selectedGym ? selectedGym.pricePerSlot : 12.99;
+  const basePrice = selectedGym ? selectedGym.pricePerSlot : 100;
   
   const slots = [];
   for (let hour = 5; hour <= 21; hour += 2) {
